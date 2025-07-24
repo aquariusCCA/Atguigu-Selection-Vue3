@@ -15,3 +15,14 @@ export interface ResponseData {
 export interface LoginRespData extends ResponseData {
 	data: string
 }
+
+// 获取用户信息返回类型
+export interface UserInfoRespData extends ResponseData {
+	data: {
+		name: string
+		avatar: string
+		roles: string[]
+		routes: string[]
+		buttons: string[]
+	}
+}

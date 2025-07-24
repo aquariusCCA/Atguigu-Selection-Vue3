@@ -1,7 +1,9 @@
 import { createApp } from "vue";
 
-import { createPinia } from "pinia";
-import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+// import { createPinia } from "pinia";
+// import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+// 引入pinia
+import pinia from '@/stores'
 
 import App from "./App.vue";
 import router from "./router";
@@ -41,8 +43,8 @@ if (import.meta.env.DEV) {
 
 const app = createApp(App);
 
-const pinia = createPinia(); 
-pinia.use(piniaPluginPersistedstate); // 引入持久化插件
+// const pinia = createPinia(); 
+// pinia.use(piniaPluginPersistedstate); // 引入持久化插件
 app.use(pinia);
 app.use(router);
 app.use(ElementPlus, {
