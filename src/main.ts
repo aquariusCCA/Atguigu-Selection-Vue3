@@ -15,6 +15,28 @@ import GlobalComponents from '@/components/index.ts'
 // 引入svg
 import 'virtual:svg-icons-register'
 
+// 引入styles
+import '@/styles/index.scss'
+
+// 引入进度条nprogress样式
+import 'nprogress/nprogress.css'
+
+// 引入假資料
+import { worker } from "./mocks/browser";
+import { setSeeds } from "@/mocks/seeds";
+
+// 開發環境可使用API假資料
+if (import.meta.env.DEV) {
+  console.log("這是開發環境，將使用假資料API");
+  // 注入假資料
+  setSeeds();
+
+  // 啟動 MSW 假資料服務
+  worker.start({
+    onUnhandledRequest: "bypass", // 不顯示任何警告，直接放行
+  });
+}
+
 const app = createApp(App);
 
 app.use(createPinia());

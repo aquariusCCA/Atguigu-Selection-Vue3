@@ -1,13 +1,7 @@
 <template>
-    <div>
-        <SvgIcon class="icon" name="home" />
-    </div>
+  <RouterView></RouterView>
 </template>
 
-<script lang="ts" setup></script>
-
-<style scoped lang="scss">
-div {
-    background-color: $aside-color;
-}
-</style>
+<script lang="ts" setup name="App">
+import { RouterView } from 'vue-router'
+</script>
