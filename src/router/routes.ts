@@ -11,6 +11,29 @@ export const constantRoutes = [
     },
   },
   {
+    path: "/",
+    component: () => import("@/layout/index.vue"),
+    name: "Layout",
+    redirect: "/home",
+    meta: {
+      name: "",
+      hidden: false,
+      icon: "",
+    },
+    children: [
+      {
+        path: "/home",
+        component: () => import("@/views/home/index.vue"),
+        name: "Home",
+        meta: {
+          name: "首页",
+          hidden: false,
+          icon: "House",
+        },
+      },
+    ],
+  },
+  {
     path: "/test",
     component: () => import("@/views/TestView.vue"),
     name: "Test",

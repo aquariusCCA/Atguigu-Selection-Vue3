@@ -13,7 +13,9 @@ export interface ResponseData {
 
 // 登录返回类型
 export interface LoginRespData extends ResponseData {
-	data: string
+	data: {
+		token: string
+	}
 }
 
 // 获取用户信息返回类型

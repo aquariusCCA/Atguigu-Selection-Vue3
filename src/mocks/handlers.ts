@@ -46,7 +46,7 @@ export const handlers = [
   http.post(`${BASE_URL}/admin/acl/index/login`, (resolverInfo) => {
     return mockResolver(resolverInfo);
   }),
-  http.get(`${BASE_URL}/admin/acl/index/info`, (resolverInfo) => {
+  http.get(`${BASE_URL}/admin/acl/index/info?mode=test`, (resolverInfo) => {
     return mockResolver(resolverInfo);
   }),
   http.post(`${BASE_URL}/admin/acl/index/logout`, (resolverInfo) => {

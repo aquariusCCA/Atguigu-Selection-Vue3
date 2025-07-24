@@ -1,13 +1,11 @@
 import router from "@/router";
 // @ts-ignore
 import NProgress from "nprogress";
-// 在非.vue文件中,引入store小仓库之前,需要先传入pinia作为参数,不然会报错
-import pinia from "@/stores";
-import { useUserStore } from "@/stores/modules/user";
-const userStore = useUserStore(pinia);
+import { useUserStore } from "@/stores/user";
 
 router.beforeEach(async (to, from, next) => {
   NProgress.start();
+  const userStore = useUserStore();
   // 1.存在token
   if (userStore.token) {
     if (to.path === "/login") {

@@ -1,9 +1,8 @@
 import { createApp } from "vue";
 
-// import { createPinia } from "pinia";
-// import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 // 引入pinia
-import pinia from '@/stores'
+import { createPinia } from 'pinia';
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
 import App from "./App.vue";
 import router from "./router";
@@ -29,6 +28,9 @@ import 'nprogress/nprogress.css'
 import { worker } from "./mocks/browser";
 import { setSeeds } from "@/mocks/seeds";
 
+// 引入permission
+import '@/router/permission'
+
 // 開發環境可使用API假資料
 if (import.meta.env.DEV) {
   console.log("這是開發環境，將使用假資料API");
@@ -43,8 +45,8 @@ if (import.meta.env.DEV) {
 
 const app = createApp(App);
 
-// const pinia = createPinia(); 
-// pinia.use(piniaPluginPersistedstate); // 引入持久化插件
+const pinia = createPinia(); 
+pinia.use(piniaPluginPersistedstate) // 引入持久化插件
 app.use(pinia);
 app.use(router);
 app.use(ElementPlus, {

@@ -12,7 +12,7 @@ export const setSeeds = async () => {
       // [url, json key]
       [`${BASE_URL}/users/1`, getUsers],
       [`${BASE_URL}/admin/acl/index/login`, doLogin],
-      [`${BASE_URL}/admin/acl/index/info`, getInfo],
+      [`${BASE_URL}/admin/acl/index/info?mode=test`, getInfo],
       [`${BASE_URL}/admin/acl/index/logout`, doLogout],
     ]);
   } catch (err) {
