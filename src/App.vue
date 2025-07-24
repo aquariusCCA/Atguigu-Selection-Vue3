@@ -1,6 +1,6 @@
 <template>
     <div>
-        
+        <SvgIcon class="icon" name="home" />
     </div>
 </template>
 

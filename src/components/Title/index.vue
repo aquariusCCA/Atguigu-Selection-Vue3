@@ -1,7 +1,7 @@
 <template>
 	<div class="title">
 		<p>{{ title }}</p>
-		<img src="@/assets/dataScreen-title.png" alt="title" />
+		<img src="@/assets/images/dataScreen-title.png" alt="title" />
 	</div>
 </template>
 
