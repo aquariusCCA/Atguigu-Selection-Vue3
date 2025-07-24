@@ -1,0 +1,10 @@
+{
+    "doLogin": {
+        "code": 200,
+        "message": "Login successful",
+        "ok": true,
+        "data": {
+            "token": "token1234567890"
+        }
+    }
+}

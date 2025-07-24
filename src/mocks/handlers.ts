@@ -1,7 +1,7 @@
 import { http, HttpResponse, passthrough } from "msw";
 import type { HttpResponseResolver } from "msw";
 import { ApiMode } from "@/utils/request";
-import { get as getDataFromIdb } from 'idb-keyval'
+import { get as getDataFromIdb } from "idb-keyval";
 
 const BASE_URL = import.meta.env.VITE_SERVER;
 
@@ -27,5 +27,8 @@ const mockResolver: HttpResponseResolver = async ({ request }) => {
 export const handlers = [
   http.post(`${BASE_URL}/users/1`, (resolverInfo) => {
     return mockResolver(resolverInfo);
-  })
+  }),
+  http.post(`${BASE_URL}/admin/acl/index/login`, (resolverInfo) => {
+    return mockResolver(resolverInfo);
+  }),
 ];
