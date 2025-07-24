@@ -6,4 +6,8 @@
 
 <script lang="ts" setup></script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+div {
+    background-color: $aside-color;
+}
+</style>
