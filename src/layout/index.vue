@@ -9,6 +9,12 @@
 		<div class="layout-main" :class="settingStore.fold ? 'fold' : ''">
 			<Main></Main>
 		</div>
+		<div 
+			class="layout-overlay" 
+			:class="settingStore.fold ? '' : 'fold'"
+			 @click="toggleOverlay"
+		>
+		</div>
 	</div>
 </template>
 
@@ -17,15 +23,25 @@ import Aside from './aside/index.vue'
 import Tabbar from './tabbar/index.vue'
 import Main from './main/index.vue'
 import { useSettingStore } from '@/stores/setting'
+import { storeToRefs } from 'pinia';
+
 const settingStore = useSettingStore()
+const { fold } = storeToRefs(settingStore)
+function toggleOverlay() {
+    console.log('Overlay clicked')
+    fold.value = !fold.value
+}
 </script>
 
 <style scoped lang="scss">
 .layout-container {
 	height: 100vh;
 	position: relative;
+	overflow: hidden;
 
 	.layout-aside {
+		position: relative;
+		z-index: 2;
 		height: 100vh;
 		width: $aside-width;
 		background-color: $aside-color;
@@ -58,12 +74,31 @@ const settingStore = useSettingStore()
 		padding: 20px;
 		height: calc(100vh - $tabbar-height);
 		width: calc(100vw - $aside-width);
-		overflow: auto;
+		overflow: hidden;
 		transition: all 0.3s ease;
 
 		&.fold {
 			width: calc(100vw - $aside-fold-width);
 			left: $aside-fold-width;
+		}
+	}
+
+	.layout-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(36, 39, 59, 0.8);
+		transform: scale(1.1);
+		opacity: 0;
+		pointer-events: none;
+		transition: transform 0.3s ease, opacity 0.3s ease;
+
+		&.fold {
+			transform: scale(1);
+			opacity: 1;
+			pointer-events: auto;
 		}
 	}
 }
