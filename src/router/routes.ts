@@ -33,20 +33,74 @@ export const constantRoutes = [
       },
     ],
   },
-  {
-    path: "/test",
-    component: () => import("@/views/TestView.vue"),
-    name: "Test",
-    meta: {
-      name: "测试",
-      hidden: true,
-      icon: "",
-    },
-  },
+	{
+		path: '/404',
+		component: () => import('@/views/404/index.vue'),
+		name: '404',
+		meta: {
+			name: '404',
+			hidden: true,
+			icon: ''
+		}
+	},
 ];
 
 // 异步路由
-export const asyncRoutes = [];
+export const asyncRoutes = [
+  {
+    path: "/product",
+    component: () => import("@/layout/index.vue"),
+    name: "Product",
+    redirect: "/product/attr",
+    meta: {
+      name: "商品管理",
+      hidden: false,
+      icon: "Star",
+    },
+    children: [
+      {
+        path: "/product/attr",
+        component: () => import("@/views/product/attr/index.vue"),
+        name: "Attr",
+        meta: {
+          name: "属性管理",
+          hidden: false,
+          icon: "Coin",
+        },
+      },
+      {
+        path: "/product/sku",
+        component: () => import("@/views/product/sku/index.vue"),
+        name: "Sku",
+        meta: {
+          name: "SKU管理",
+          hidden: false,
+          icon: "Goods",
+        },
+      },
+      {
+        path: "/product/spu",
+        component: () => import("@/views/product/spu/index.vue"),
+        name: "Spu",
+        meta: {
+          name: "SPU管理",
+          hidden: false,
+          icon: "Handbag",
+        },
+      },
+      {
+        path: "/product/trademark",
+        component: () => import("@/views/product/trademark/index.vue"),
+        name: "Trademark",
+        meta: {
+          name: "品牌管理",
+          hidden: false,
+          icon: "Apple",
+        },
+      },
+    ],
+  },
+];
 
 // 任意路由
 export const anyRoute = {
