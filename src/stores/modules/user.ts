@@ -23,7 +23,6 @@ export const useUserStore = defineStore(
 
     async function userLogin(data: LoginFormData) {
       const result = await reqLogin(data);
-      console.log("userLogin", result);
       if (result.code === 200) {
         token.value = result.data.token;
         localStorage.setItem("TOKEN", result.data.token);
@@ -37,14 +36,13 @@ export const useUserStore = defineStore(
       const result = await reqUserInfo();
       if (result.code === 200) {
         // @ts-ignore
-        this.loginUser = result.data;
+        loginUser.value = result.data;
         // 1.过滤异步路由, 作为用户菜单展示
         let filterRoutes = filterAsyncRoutes(
           cloneDeep(asyncRoutes),
           result.data.routes
         );
         routes.value = [...constantRoutes, ...filterRoutes];
-        console.log("filterRoutes", routes.value);
         // 2.将过滤后的异步路由, 追加到路由器中
         filterRoutes.forEach((route) => {
           router.addRoute(route);
@@ -89,11 +87,5 @@ export const useUserStore = defineStore(
       userInfo,
       userLogout,
     };
-  },
-  {
-    // 啟用持久化
-    persist: {
-      storage: sessionStorage, // 使用 sessionStorage 來持久化
-    },
   }
 );

@@ -5,7 +5,7 @@
 <script lang="ts" setup name="App">
 import { RouterView } from 'vue-router'
 import { watch } from 'vue'
-import { useSettingStore } from './stores/setting'
+import { useSettingStore } from './stores/modules/setting'
 const settingStore = useSettingStore()
 
 // 监听主题颜色、暗黑模式设置的变化

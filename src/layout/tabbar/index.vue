@@ -52,8 +52,8 @@
 <script lang="ts" setup name="Tabbar">
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { useSettingStore } from '@/stores/setting'
-import { useUserStore } from '@/stores/user'
+import { useSettingStore } from '@/stores/modules/setting'
+import { useUserStore } from '@/stores/modules/user'
 import router from '@/router'
 const route = useRoute()
 const settingStore = useSettingStore()

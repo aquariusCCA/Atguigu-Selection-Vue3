@@ -1,8 +1,7 @@
 import { createApp } from "vue";
 
 // 引入pinia
-import { createPinia } from 'pinia';
-import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+import pinia from "./stores/index.ts";
 
 import App from "./App.vue";
 import router from "./router";
@@ -38,15 +37,13 @@ if (import.meta.env.DEV) {
   setSeeds();
 
   // 啟動 MSW 假資料服務
-  worker.start({
+  await worker.start({
     onUnhandledRequest: "bypass", // 不顯示任何警告，直接放行
   });
 }
 
 const app = createApp(App);
 
-const pinia = createPinia(); 
-pinia.use(piniaPluginPersistedstate) // 引入持久化插件
 app.use(pinia);
 app.use(router);
 app.use(ElementPlus, {

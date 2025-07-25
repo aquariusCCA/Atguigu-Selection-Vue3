@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useUserStore } from '@/stores/user'
+import { useUserStore } from '@/stores/modules/user'
 import settings from '@/settings'
 import { getTime } from '@/utils/date'
 

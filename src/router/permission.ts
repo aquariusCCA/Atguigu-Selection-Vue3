@@ -1,7 +1,7 @@
 import router from "@/router";
 // @ts-ignore
 import NProgress from "nprogress";
-import { useUserStore } from "@/stores/user";
+import { useUserStore } from "@/stores/modules/user";
 
 router.beforeEach(async (to, from, next) => {
   NProgress.start();
@@ -19,7 +19,7 @@ router.beforeEach(async (to, from, next) => {
         try {
           await userStore.userInfo();
           //刷新的时候, 有可能获取到用户信息后, 异步路由还没有加载完毕, 出现页面空白的效果, 加上 {...to}
-          next({ ...to });
+          next({ ...to, replace: true });
         } catch (e) {
           // 当获取不到用户信息, 清空token及用户信息, 回到登录页
           userStore.userLogout();

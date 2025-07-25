@@ -7,7 +7,7 @@
 
 <script lang="ts" setup>
 import settings from '@/settings'
-import { useSettingStore } from '@/stores/setting'
+import { useSettingStore } from '@/stores/modules/setting'
 const settingStore = useSettingStore()
 </script>
 

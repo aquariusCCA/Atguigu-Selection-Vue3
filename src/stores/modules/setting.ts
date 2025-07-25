@@ -31,11 +31,5 @@ export const useSettingStore = defineStore(
       changeDark,
       changeColor,
     };
-  },
-  {
-    // 啟用持久化
-    persist: {
-      storage: sessionStorage, // 使用 sessionStorage 來持久化
-    },
   }
 );

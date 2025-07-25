@@ -1,7 +1,7 @@
 import axios from "axios";
 import type { AxiosRequestConfig } from "axios";
 import { ElMessage } from "element-plus";
-import { useUserStore } from '@/stores/user'
+import { useUserStore } from '@/stores/modules/user'
 
 export enum ApiMode {
   TEST = "test",

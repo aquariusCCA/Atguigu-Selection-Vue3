@@ -31,7 +31,7 @@
 <script lang="ts" setup>
 import { Lock, User } from '@element-plus/icons-vue'
 import { ref } from 'vue'
-import { useUserStore } from '@/stores/user'
+import { useUserStore } from '@/stores/modules/user'
 import { ElNotification } from 'element-plus'
 import { getTime } from '@/utils/date'
 import router from '@/router'
