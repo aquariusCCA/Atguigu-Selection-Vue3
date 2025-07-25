@@ -33,7 +33,6 @@
 <script lang="ts" setup>
 import router from '@/router'
 defineProps(['menuList'])
-
 // @ts-ignore
 const toMenu = vc => {
 	router.push({ path: vc.index })

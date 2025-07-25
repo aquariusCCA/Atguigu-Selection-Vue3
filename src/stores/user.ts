@@ -44,6 +44,7 @@ export const useUserStore = defineStore(
           result.data.routes
         );
         routes.value = [...constantRoutes, ...filterRoutes];
+        console.log("filterRoutes", routes.value);
         // 2.将过滤后的异步路由, 追加到路由器中
         filterRoutes.forEach((route) => {
           router.addRoute(route);
@@ -83,6 +84,7 @@ export const useUserStore = defineStore(
     return {
       token,
       loginUser,
+      routes,
       userLogin,
       userInfo,
       userLogout,

@@ -28,7 +28,6 @@ import { storeToRefs } from 'pinia';
 const settingStore = useSettingStore()
 const { fold } = storeToRefs(settingStore)
 function toggleOverlay() {
-    console.log('Overlay clicked')
     fold.value = !fold.value
 }
 </script>

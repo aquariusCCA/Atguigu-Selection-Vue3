@@ -16,7 +16,6 @@ export const useSettingStore = defineStore(
       refresh.value = !refresh.value;
     }
     function changeDark() {
-      dark.value = !dark.value;
       localStorage.setItem("dark", String(dark.value));
     }
     function changeColor() {
