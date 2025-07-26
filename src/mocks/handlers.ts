@@ -64,4 +64,7 @@ export const handlers = [
   http.get(`${BASE_URL}/admin/acl/user/toAssign/81260?mode=test`, (resolverInfo) => {
     return mockResolver(resolverInfo);
   }),
+  http.post(`${BASE_URL}/admin/acl/user/doAssignRole`, (resolverInfo) => {
+    return mockResolver(resolverInfo);
+  })
 ];

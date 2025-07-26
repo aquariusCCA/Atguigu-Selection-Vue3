@@ -138,5 +138,11 @@
       ]
     },
     "ok": true
+  },
+  "reqSetUserRole": {
+    "code": 200,
+    "message": "成功",
+    "data": null,
+    "ok": true
   }
 }

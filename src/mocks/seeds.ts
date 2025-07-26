@@ -10,7 +10,8 @@ import {
   reqUserSave, 
   reqUserUpdate, 
   reqUserDeleteBatch,
-  reqRoleList 
+  reqRoleList,
+  reqSetUserRole
 } from './jsons/aclUser.json'
 
 const BASE_URL = import.meta.env.VITE_SERVER;
@@ -28,7 +29,8 @@ export const setSeeds = async () => {
       [`${BASE_URL}/admin/acl/user/save`, reqUserSave],
       [`${BASE_URL}/admin/acl/user/update`, reqUserUpdate],
       [`${BASE_URL}/admin/acl/user/batchRemove`, reqUserDeleteBatch],
-      [`${BASE_URL}/admin/acl/user/toAssign/81260?mode=test`, reqRoleList]
+      [`${BASE_URL}/admin/acl/user/toAssign/81260?mode=test`, reqRoleList],
+      [`${BASE_URL}/admin/acl/user/doAssignRole`, reqSetUserRole]
     ]);
   } catch (err) {
     console.log(err);

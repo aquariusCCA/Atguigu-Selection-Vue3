@@ -16,14 +16,8 @@
 		<!-- 列表 -->
 		<el-card>
 			<el-button v-btn-auth="'btn.User.add'" type="primary" @click="handleAdd">添加用户</el-button>
-			<el-popconfirm
-				width="250"
-				confirm-button-text="删除"
-				cancel-button-text="取消"
-				icon="Delete"
-				:title="`确认要批量删除：${batchDelUsers.map(x => x.username).join(',')} 吗？`"
-				@confirm="handleDeleteBatch"
-			>
+			<el-popconfirm width="250" confirm-button-text="删除" cancel-button-text="取消" icon="Delete"
+				:title="`确认要批量删除：${batchDelUsers.map(x => x.username).join(',')} 吗？`" @confirm="handleDeleteBatch">
 				<template #reference>
 					<el-button type="danger" :disabled="batchDelUsers.length == 0">批量删除</el-button>
 				</template>
@@ -39,20 +33,10 @@
 				<el-table-column prop="updateTime" label="更新时间" />
 				<el-table-column label="操作" width="280">
 					<template #default="{ row }">
-						<el-button size="small" type="primary" icon="User" @click="handleRole(row)"
-							>分配角色</el-button
-						>
-						<el-button size="small" type="primary" icon="Edit" @click="handleEdit(row)"
-							>编辑</el-button
-						>
-						<el-popconfirm
-							width="250"
-							confirm-button-text="删除"
-							cancel-button-text="取消"
-							icon="Delete"
-							:title="`确认要删除${row.username}吗？`"
-							@confirm="handleDelete(row)"
-						>
+						<el-button size="small" type="primary" icon="User" @click="handleRole(row)">分配角色</el-button>
+						<el-button size="small" type="primary" icon="Edit" @click="handleEdit(row)">编辑</el-button>
+						<el-popconfirm width="250" confirm-button-text="删除" cancel-button-text="取消" icon="Delete"
+							:title="`确认要删除${row.username}吗？`" @confirm="handleDelete(row)">
 							<template #reference>
 								<el-button size="small" icon="Delete" type="danger">删除</el-button>
 							</template>
@@ -61,20 +45,13 @@
 				</el-table-column>
 			</el-table>
 
-			<el-pagination
-				v-model:current-page="queryParams.page"
-				v-model:page-size="queryParams.limit"
-				:total="total"
-				:page-sizes="[5, 10, 20, 30]"
-				layout="prev, pager, next, jumper,->,sizes,total"
-				background
-				@size-change="handleSizeChange"
-				@current-change="handleCurrentChange"
-			/>
+			<el-pagination v-model:current-page="queryParams.page" v-model:page-size="queryParams.limit" :total="total"
+				:page-sizes="[5, 10, 20, 30]" layout="prev, pager, next, jumper,->,sizes,total" background
+				@size-change="handleSizeChange" @current-change="handleCurrentChange" />
 		</el-card>
 
 		<!-- 添加用户 / 修改用户 -->
-		<el-drawer v-model="drawer">
+		<el-drawer v-model="drawer" size="70%" direction="rtl">
 			<template #header>
 				<h4>{{ title }}</h4>
 			</template>
@@ -94,6 +71,36 @@
 			<template #footer>
 				<el-button @click="cancel">取消</el-button>
 				<el-button type="primary" @click="confirm">确定</el-button>
+			</template>
+		</el-drawer>
+
+		<!-- 分配角色 -->
+		<el-drawer v-model="drawerRole" size="70%" direction="rtl">
+			<template #header>
+				<h4>分配角色</h4>
+			</template>
+			<template #default>
+				<el-form :model="userRoleForm">
+					<el-form-item label="用户名" label-width="70px">
+						<el-input v-model="userRoleForm.username" disabled></el-input>
+					</el-form-item>
+					<el-form-item label="角色列表" label-width="70px">
+						<el-checkbox v-model="checkAll" :indeterminate="isIndeterminate" @change="handleCheckAllChange">
+							<span>全选</span>
+						</el-checkbox>
+					</el-form-item>
+					<el-form-item label-width="70px">
+						<el-checkbox-group v-model="checkedRoleIds" @change="handleCheckedRolesChange">
+							<el-checkbox v-for="role in roleList" :key="role.id" :label="role.roleName"
+								:value="role.id">
+							</el-checkbox>
+						</el-checkbox-group>
+					</el-form-item>
+				</el-form>
+			</template>
+			<template #footer>
+				<el-button @click="cancelSetRole">取消</el-button>
+				<el-button type="primary" @click="confirmSetRole">确定</el-button>
 			</template>
 		</el-drawer>
 	</div>
@@ -144,7 +151,7 @@ const userRoleForm = reactive({
 	username: ''
 })
 
-onMounted(async() => {
+onMounted(async () => {
 	await getUserList()
 })
 
@@ -256,6 +263,32 @@ const handleSizeChange = (val: number) => {
 
 const handleCurrentChange = (page: number) => {
 	getUserList(page)
+}
+
+const handleCheckAllChange = (val: boolean) => {
+	checkedRoleIds.value = val ? roleList.value.map(x => x.id) : []
+	isIndeterminate.value = false
+}
+
+const cancelSetRole = () => {
+	drawerRole.value = false
+}
+
+const handleCheckedRolesChange = (value: string[]) => {
+	const checkedCount = value.length
+	checkAll.value = checkedCount === roleList.value.length
+	isIndeterminate.value = checkedCount > 0 && checkedCount < roleList.value.length
+}
+
+const confirmSetRole = async () => {
+	const result = await reqSetUserRole(checkedRoleIds.value, userRoleForm.userId)
+	if (result.code == 200) {
+		ElMessage.success('分配成功')
+		drawerRole.value = false
+		getUserList(queryParams.page)
+	} else {
+		ElMessage.error('分配失败')
+	}
 }
 </script>
 
