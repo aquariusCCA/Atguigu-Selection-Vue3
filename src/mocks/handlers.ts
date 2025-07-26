@@ -40,9 +40,6 @@ const mockResolver: HttpResponseResolver = async ({ request }) => {
 };
 
 export const handlers = [
-  http.post(`${BASE_URL}/users/1`, (resolverInfo) => {
-    return mockResolver(resolverInfo);
-  }),
   http.post(`${BASE_URL}/admin/acl/index/login`, (resolverInfo) => {
     return mockResolver(resolverInfo);
   }),
@@ -50,6 +47,21 @@ export const handlers = [
     return mockResolver(resolverInfo);
   }),
   http.post(`${BASE_URL}/admin/acl/index/logout`, (resolverInfo) => {
+    return mockResolver(resolverInfo);
+  }),
+  http.get(`${BASE_URL}/admin/acl/user/1/5?mode=test`, (resolverInfo) => {
+    return mockResolver(resolverInfo);
+  }),
+  http.post(`${BASE_URL}/admin/acl/user/save`, (resolverInfo) => {
+    return mockResolver(resolverInfo);
+  }),
+  http.put(`${BASE_URL}/admin/acl/user/update`, (resolverInfo) => {
+    return mockResolver(resolverInfo);
+  }),
+  http.delete(`${BASE_URL}/admin/acl/user/batchRemove`, (resolverInfo) => {
+    return mockResolver(resolverInfo);
+  }),
+  http.get(`${BASE_URL}/admin/acl/user/toAssign/81260?mode=test`, (resolverInfo) => {
     return mockResolver(resolverInfo);
   }),
 ];

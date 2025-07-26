@@ -30,6 +30,9 @@ import { setSeeds } from "@/mocks/seeds";
 // 引入permission
 import '@/router/permission'
 
+// 引入自定义指令
+import BtnAuth from './directives/btnAuth.ts'
+
 // 開發環境可使用API假資料
 if (import.meta.env.DEV) {
   console.log("這是開發環境，將使用假資料API");
@@ -50,5 +53,6 @@ app.use(ElementPlus, {
   locale: zhTw,
 });
 app.use(GlobalComponents);
+app.use(BtnAuth);
 
 app.mount("#app");

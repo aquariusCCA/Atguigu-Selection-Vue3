@@ -146,4 +146,11 @@ const handleLogout = async () => {
 		}
 	}
 }
+
+// 當屏幕小於 425 以下隱藏 el-breadcrumb
+@media (max-width: 425px) {
+	.tabbar-left .el-breadcrumb {
+		display: none;
+	}
+}
 </style>

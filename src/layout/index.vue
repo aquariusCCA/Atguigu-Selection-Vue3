@@ -40,7 +40,7 @@ function toggleOverlay() {
 
 	.layout-aside {
 		position: relative;
-		z-index: 2;
+		z-index: 20;
 		height: 100vh;
 		width: $aside-width;
 		background-color: $aside-color;
@@ -84,6 +84,7 @@ function toggleOverlay() {
 
 	.layout-overlay {
 		position: fixed;
+		z-index: 10;
 		top: 0;
 		left: 0;
 		width: 100%;
