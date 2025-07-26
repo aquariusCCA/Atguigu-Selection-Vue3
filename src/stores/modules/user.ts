@@ -5,6 +5,7 @@ import type { LoginFormData } from "@/api/user/type.ts";
 import { constantRoutes, asyncRoutes, anyRoute } from "@/router/routes";
 import { cloneDeep } from "lodash";
 import router from "@/router";
+import { setToken, removeToken } from "@/utils/auth";
 
 const initLoginUser = {
   name: "",
@@ -17,15 +18,13 @@ const initLoginUser = {
 export const useUserStore = defineStore(
   "user",
   () => {
-    const token = ref(localStorage.getItem("TOKEN") || "");
     const loginUser = ref({ ...initLoginUser });
     const routes = ref([...constantRoutes]);
 
     async function userLogin(data: LoginFormData) {
       const result = await reqLogin(data);
       if (result.code === 200) {
-        token.value = result.data.token;
-        localStorage.setItem("TOKEN", result.data.token);
+        setToken(result.data.token);
         return "ok";
       } else {
         return Promise.reject(result.data);
@@ -70,9 +69,8 @@ export const useUserStore = defineStore(
       // 服务器没有logout接口，跳过接口做下一步操作
       const result = await reqLogout();
       if (result.code === 200) {
-        token.value = "";
         loginUser.value = { ...initLoginUser };
-        localStorage.removeItem("TOKEN");
+        removeToken();
         return "ok";
       } else {
         return Promise.reject(result.message);
@@ -80,7 +78,6 @@ export const useUserStore = defineStore(
     }
 
     return {
-      token,
       loginUser,
       routes,
       userLogin,

@@ -2,12 +2,13 @@ import router from "@/router";
 // @ts-ignore
 import NProgress from "nprogress";
 import { useUserStore } from "@/stores/modules/user";
+import { getToken } from "@/utils/auth";
 
 router.beforeEach(async (to, from, next) => {
   NProgress.start();
   const userStore = useUserStore();
   // 1.存在token
-  if (userStore.token) {
+  if (getToken()) {
     if (to.path === "/login") {
       next("/");
     } else {
