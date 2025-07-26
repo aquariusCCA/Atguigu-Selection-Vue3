@@ -144,5 +144,11 @@
     "message": "成功",
     "data": null,
     "ok": true
+  },
+  "reqUserDelete": {
+    "code": 200,
+    "message": "成功",
+    "data": null,
+    "ok": true
   }
 }

@@ -66,5 +66,26 @@ export const handlers = [
   }),
   http.post(`${BASE_URL}/admin/acl/user/doAssignRole`, (resolverInfo) => {
     return mockResolver(resolverInfo);
+  }),
+  http.delete(`${BASE_URL}/admin/acl/user/remove/81260`, (resolverInfo) => {
+    return mockResolver(resolverInfo);
+  }),
+  http.get(`${BASE_URL}/admin/acl/role/1/5?mode=test`, (resolverInfo) => {
+    return mockResolver(resolverInfo);
+  }),
+  http.post(`${BASE_URL}/admin/acl/role/save`, (resolverInfo) => {
+    return mockResolver(resolverInfo);
+  }),
+  http.put(`${BASE_URL}/admin/acl/role/update`, (resolverInfo) => {
+    return mockResolver(resolverInfo);
+  }),
+  http.delete(`${BASE_URL}/admin/acl/role/remove/19093`, (resolverInfo) => {
+    return mockResolver(resolverInfo);
+  }),
+  http.get(`${BASE_URL}/admin/acl/permission/toAssign/19093?mode=test`, (resolverInfo) => {
+    return mockResolver(resolverInfo);
+  }),
+  http.post(`${BASE_URL}/admin/acl/permission/doAssign?roleId=19093&permissionId=1,7,8,11,12,13,14,16994,9,15,16,17,18,17086,10,19,20,21,17234,17209,17210,17211,22,23,44,45,46,17224,17235,24,50,51,52,25,47,48,49,13146,26,53,54,55,56,57,27,58,59,60,61,28,29,41,42,30,31,43,32,33,35,36,37,34,38,39`, (resolverInfo) => {
+    return mockResolver(resolverInfo);
   })
 ];
