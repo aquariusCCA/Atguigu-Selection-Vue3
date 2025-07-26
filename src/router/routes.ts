@@ -33,20 +33,63 @@ export const constantRoutes = [
       },
     ],
   },
-	{
-		path: '/404',
-		component: () => import('@/views/404/index.vue'),
-		name: '404',
-		meta: {
-			name: '404',
-			hidden: true,
-			icon: ''
-		}
-	},
+  {
+    path: "/404",
+    component: () => import("@/views/404/index.vue"),
+    name: "404",
+    meta: {
+      name: "404",
+      hidden: true,
+      icon: "",
+    },
+  },
 ];
 
 // 异步路由
 export const asyncRoutes = [
+  {
+    path: "/acl",
+    component: () => import("@/layout/index.vue"),
+    name: "Acl",
+    redirect: "/acl/user",
+    meta: {
+      name: "权限管理",
+      hidden: false,
+      icon: "Place",
+    },
+    children: [
+      {
+        path: "/acl/user",
+        component: () => import("@/views/acl/user/index.vue"),
+        name: "User",
+        meta: {
+          name: "用户管理",
+          hidden: false,
+          icon: "User",
+        },
+      },
+      {
+        path: "/acl/role",
+        component: () => import("@/views/acl/role/index.vue"),
+        name: "Role",
+        meta: {
+          name: "角色管理",
+          hidden: false,
+          icon: "Medal",
+        },
+      },
+      {
+        path: "/acl/menu",
+        component: () => import("@/views/acl/menu/index.vue"),
+        name: "Permission",
+        meta: {
+          name: "菜单管理",
+          hidden: false,
+          icon: "Notebook",
+        },
+      },
+    ],
+  },
   {
     path: "/product",
     component: () => import("@/layout/index.vue"),
